@@ -6,7 +6,7 @@ venv/
 __pycache__/
 .DS_Store
 *.pyc
-models/
+
 
 # C extensions
 *.so
@@ -227,3 +227,4 @@ data/frames/
 data/faces/
 data/processed_faces/
 .DS_Store
+data/dataset/
