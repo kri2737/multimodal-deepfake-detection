@@ -221,3 +221,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+data/raw_videos/
+data/frames/
+data/faces/
+data/processed_faces/
+.DS_Store
