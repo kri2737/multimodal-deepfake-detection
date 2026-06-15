@@ -26,20 +26,23 @@ transform = transforms.Compose([
     transforms.ToTensor()
 ])
 
-# ===== CHANGE THIS PATH =====
-image_path = "deepfake_dataset/test/real/068_10.png"
-
-# Load image
-image = Image.open(image_path).convert("RGB")
-
-image = transform(image)
-image = image.unsqueeze(0).to(device)
-
-# Predict
-with torch.no_grad():
-    output = model(image)
-    prediction = torch.argmax(output, dim=1).item()
-
 classes = ["fake", "real"]
 
-print("Prediction:", classes[prediction])
+
+def predict_image(image_path):
+    image = Image.open(image_path).convert("RGB")
+    image = transform(image)
+    image = image.unsqueeze(0).to(device)
+
+    with torch.no_grad():
+        output = model(image)
+        prediction = torch.argmax(output, dim=1).item()
+
+    return classes[prediction]
+
+
+if __name__ == "__main__":
+    # Test code only
+    image_path = "deepfake_dataset/test/real/068_10.png"
+    result = predict_image(image_path)
+    print("Prediction:", result)
