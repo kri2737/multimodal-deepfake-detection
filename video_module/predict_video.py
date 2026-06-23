@@ -76,22 +76,34 @@ for filename in os.listdir(frames_folder):
     if image is None:
         continue
 
-    results = detector.detect_faces(image)
+    try:
+         results = detector.detect_faces(image)
+    except Exception:
+          continue
 
     for result in results:
 
-        x, y, w, h = result["box"]
+      x, y, w, h = result["box"]
 
-        face = image[y:y+h, x:x+w]
+    if w <= 0 or h <= 0:
+        continue
 
-        face_path = os.path.join(
-            faces_folder,
-            f"face_{face_count}.jpg"
-        )
+    x = max(0, x)
+    y = max(0, y)
 
-        cv2.imwrite(face_path, face)
+    face = image[y:y+h, x:x+w]
 
-        face_count += 1
+    if face.size == 0:
+        continue
+
+    face_path = os.path.join(
+        faces_folder,
+        f"face_{face_count}.jpg"
+    )
+
+    cv2.imwrite(face_path, face)
+
+    face_count += 1
 
 print(f"{face_count} faces detected")
 
