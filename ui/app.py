@@ -309,7 +309,7 @@ if process_button and uploaded_file:
                 cols = st.columns(min(len(face_images), 5))
                 for idx, face_img in enumerate(face_images):
                     with cols[idx % 5]:
-                        st.image(face_img, use_column_width=True, caption=f"Face {idx+1}")
+                        st.image(face_img, width=200, caption=f"Face {idx+1}")
         
         except Exception as e:
             st.warning(f"Could not extract faces for display: {e}")
@@ -338,7 +338,7 @@ if process_button and uploaded_file:
                         ax.set_title('Audio Waveform')
                         ax.set_xlabel('Time (s)')
                         ax.set_ylabel('Amplitude')
-                        st.pyplot(fig, use_container_width=True)
+                        st.pyplot(fig)
                         plt.close()
                     
                     # MFCC Spectrogram
@@ -363,7 +363,7 @@ if process_button and uploaded_file:
                         )
                         ax.set_title('MFCC Spectrogram')
                         fig.colorbar(img, ax=ax, format='%+2.0f dB')
-                        st.pyplot(fig, use_container_width=True)
+                        st.pyplot(fig)
                         plt.close()
                     
                     # Cleanup
