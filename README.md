@@ -1,300 +1,227 @@
-# Multimodal Deepfake Detection System
+# 🛡️ Multimodal Deepfake Detection System
 
-A comprehensive AI-powered system for detecting deepfakes using combined video and audio analysis. This system leverages:
+## 📌 Overview
 
-- **Video Analysis**: ResNet18-based face classification
-- **Audio Analysis**: MFCC feature extraction and classification
-- **Multimodal Fusion**: Feature-level and late fusion strategies
-- **User Interface**: Premium Streamlit dashboard
+The **Multimodal Deepfake Detection System** is a deep learning-based application designed to detect AI-generated (fake) videos by analyzing both **visual** and **audio** information. The system integrates computer vision, audio signal processing, and multimodal feature fusion to improve deepfake detection accuracy.
 
-## 🎯 Features
+This project was developed as a collaborative team project, where each member was responsible for a dedicated module that was later integrated into a unified application.
 
-### Video Module
-- Frame extraction from video files
-- Face detection using MTCNN
-- Face preprocessing and normalization
-- ResNet18-based video classification
-- Feature extraction for fusion
+---
 
-### Audio Module
-- Audio extraction from video files
-- MFCC (Mel-Frequency Cepstral Coefficient) feature extraction
-- Audio classifier network
-- Graceful handling of mute videos
+# 🎯 Objectives
 
-### Fusion Module
-- Feature-level fusion: Concatenates video and audio embeddings
-- Late fusion: Combines predictions from individual models
-- Edge case handling:
-  - If no faces detected: uses audio model
-  - If no audio found: uses video model
-  - If both present: uses fusion model
-- Complete end-to-end prediction pipeline
+* Detect manipulated (deepfake) videos using facial analysis.
+* Analyze audio characteristics for synthetic speech detection.
+* Combine video and audio representations through multimodal fusion.
+* Provide an interactive interface for uploading and analyzing videos.
 
-### Streamlit UI
-- Video upload with support for MP4, AVI, MOV, MKV formats
-- Real-time processing progress indicators
-- Premium dashboard with gradient styling
-- Face gallery display
-- Audio waveform visualization
-- MFCC spectrogram visualization
-- Confidence score display with detailed breakdown
-- Individual model confidence scores
+---
 
-## 📦 Installation
+# 🚀 Key Features
 
-### Prerequisites
-- Python 3.8 or higher
-- CUDA 11.8+ (optional, for GPU acceleration)
+* 📹 Video-based deepfake detection
+* 🎵 Audio deepfake detection
+* 🤝 Feature-level multimodal fusion
+* 🧠 Deep learning-based classification
+* 📊 Confidence score visualization
+* 🖥️ Interactive Streamlit dashboard
 
-### Setup
+---
 
-1. **Clone the repository**
-```bash
-cd multimodal-deepfake-detection
+# 🏗️ System Architecture
+
+```text
+                    Input Video
+                         │
+          ┌──────────────┴──────────────┐
+          │                             │
+     Video Processing              Audio Processing
+          │                             │
+   Frame Extraction             Audio Extraction
+          │                             │
+     Face Detection             Audio Preprocessing
+          │                             │
+   Face Preprocessing          MFCC Feature Extraction
+          │                             │
+      ResNet18 Model            Audio Classification
+          │                             │
+     Video Features            Audio Features
+          └──────────────┬──────────────┘
+                         │
+               Feature-Level Fusion
+                         │
+                 Final Prediction
+                 (Real / AI Generated)
 ```
 
-2. **Create a virtual environment** (recommended)
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+---
 
-3. **Install dependencies**
-```bash
-pip install -r requirements.txt
-```
+# 🧠 Technologies Used
 
-4. **Initialize models**
-```bash
-python initialize_models.py
-```
+### Programming Language
 
-This will create the audio and fusion model weights in the `models/` directory.
+* Python
 
-## 🚀 Quick Start
+### Deep Learning
 
-### Option 1: Streamlit Dashboard
+* PyTorch
+* Torchvision
 
-```bash
-streamlit run ui/app.py
-```
+### Computer Vision
 
-Then open your browser to `http://localhost:8501` and upload a video to analyze.
+* OpenCV
+* MTCNN
+* Pillow
 
-### Option 2: Python API
+### Audio Processing
 
-```python
-from fusion_module.fusion_classifier import MultimodalPipeline
-import torch
+* Librosa
+* NumPy
 
-# Initialize pipeline
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-pipeline = MultimodalPipeline(device=device)
+### User Interface
 
-# Make prediction
-results = pipeline.predict('path/to/video.mp4')
+* Streamlit
 
-print(f"Prediction: {results['prediction']}")
-print(f"Confidence: {results['confidence']:.2%}")
-print(f"Video Confidence: {results.get('video_confidence', 'N/A')}")
-print(f"Audio Confidence: {results.get('audio_confidence', 'N/A')}")
-```
+### Development Tools
 
-## 📁 Project Structure
+* Git
+* GitHub
 
-```
+---
+
+# 📂 Repository Structure
+
+```text
 multimodal-deepfake-detection/
+│
 ├── audio_module/
-│   ├── __init__.py
-│   ├── audio_model.py           # AudioClassifier network
-│   └── preprocess_audio.py      # Audio extraction and MFCC processing
 ├── fusion_module/
-│   ├── __init__.py
-│   ├── fusion_classifier.py     # Fusion models and pipeline
-├── video_module/
-│   ├── extract_frames.py
-│   ├── detect_faces.py
-│   ├── preprocess_faces.py
-│   ├── train_model.py
-│   ├── predict_image.py
-│   ├── predict_video.py
-│   └── evaluate_model.py
-├── ui/
-│   └── app.py                   # Streamlit dashboard
-├── tests/
-│   └── test_fusion.py           # Unit tests
 ├── models/
-│   ├── video_model.pth
-│   ├── audio_model.pth
-│   └── fusion_model.pth
-├── initialize_models.py         # Model initialization script
+├── ui/
+├── video_module/
+├── data/
+├── deepfake_dataset/
+├── tests/
 ├── requirements.txt
 └── README.md
 ```
 
-## 🧠 Model Architecture
+---
 
-### Audio Classifier
-- **Input**: 40-dimensional MFCC features (averaged over time)
-- **Architecture**:
-  - Embedding: 40 → 128 dimensions
-  - Hidden layers: 128 → 64 → 32 dimensions
-  - Output: 2 classes (fake/real)
-- **Embedding dimension**: 32 (used for fusion)
+# 👥 Team Contributions
 
-### Fusion Classifier (Feature-Level)
-- **Inputs**:
-  - Video features: 512 dimensions (ResNet18 avgpool)
-  - Audio features: 32 dimensions (AudioClassifier embedding)
-- **Architecture**:
-  - Concatenation: 512 + 32 = 544 dimensions
-  - MLP: 544 → 256 → 128 → 2
-  - Output: 2 classes (fake/real)
+## 👤 Member 1 – Video Processing & Deepfake Detection
 
-### Fusion Classifier (Late Fusion)
-- Averages normalized predictions from video and audio models
-- Simple lightweight alternative to feature-level fusion
+Responsibilities:
 
-## 📊 Usage Examples
+* Video frame extraction
+* Face detection using MTCNN
+* Face preprocessing
+* ResNet18 model development
+* Model training
+* Model evaluation
+* Image prediction
+* Video prediction pipeline
+* Performance testing
+* GitHub integration
 
-### Example 1: Basic Prediction
-```python
-from fusion_module.fusion_classifier import MultimodalPipeline
+### Video Module Performance
 
-pipeline = MultimodalPipeline()
-results = pipeline.predict('test_video.mp4')
+* **Training Accuracy:** 97.67%
+* **Validation Accuracy:** 84.25%
+* **Test Accuracy:** 81.17%
 
-if results['prediction'] == 'FAKE':
-    print(f"⚠️  DEEPFAKE DETECTED ({results['confidence']:.1%})")
-else:
-    print(f"✅ AUTHENTIC VIDEO ({results['confidence']:.1%})")
-```
+---
 
-### Example 2: Detailed Analysis
-```python
-results = pipeline.predict('test_video.mp4')
+## 👤 Member 2 – Audio Processing
 
-print(f"Overall Prediction: {results['prediction']}")
-print(f"Overall Confidence: {results['confidence']:.2%}")
-print()
+Responsibilities:
 
-if results['has_video']:
-    print(f"Video Model Confidence: {results['video_confidence']:.2%}")
-    print(f"Faces Detected: {results['faces_detected']}")
+* Audio extraction
+* Audio preprocessing
+* MFCC feature extraction
+* Audio classification
+* Audio inference pipeline
 
-if results['has_audio']:
-    print(f"Audio Model Confidence: {results['audio_confidence']:.2%}")
-```
+---
 
-### Example 3: Using Different Fusion Strategies
-```python
-# Feature-level fusion (default)
-pipeline_feature = MultimodalPipeline(fusion_type='feature')
-results1 = pipeline_feature.predict('video.mp4')
+## 👤 Member 3 – Fusion & User Interface
 
-# Late fusion
-pipeline_late = MultimodalPipeline(fusion_type='late')
-results2 = pipeline_late.predict('video.mp4')
-```
+Responsibilities:
 
-## 🧪 Testing
+* Feature-level multimodal fusion
+* Fusion classifier implementation
+* Streamlit dashboard
+* System integration
+* Testing and deployment
 
-Run the test suite to verify system correctness:
+---
 
-```bash
-python -m unittest tests/test_fusion.py -v
-```
+# 📊 Project Workflow
 
-Tests cover:
-- Audio model forward pass and feature extraction
-- Fusion classifier feature and late fusion modes
-- Model saving and loading
-- Edge cases (no faces, no audio)
-- Integration tests for complete pipeline
+1. Upload a video.
+2. Extract video frames.
+3. Detect and preprocess faces.
+4. Analyze facial features using ResNet18.
+5. Extract and analyze audio features.
+6. Generate video and audio embeddings.
+7. Fuse both feature representations.
+8. Produce the final prediction.
 
-## 📈 Performance Considerations
+---
 
-### Hardware
-- **CPU**: Works on CPU but slower
-- **GPU**: Recommended for real-time processing
-- **Memory**: ~2GB minimum recommended
+# 📈 Performance
 
-### Processing Time
-- **Frame extraction**: ~1s per 10 frames
-- **Face detection**: ~0.5s per frame
-- **Audio processing**: ~1s per video
-- **Model inference**: ~0.1s per frame
-- **Total**: ~3-5s for typical video
+### Video Module
 
-### Optimization Tips
-1. Reduce max frames with `max_frames` parameter
-2. Use GPU acceleration if available
-3. Process multiple videos in parallel for batch operations
-4. Cache audio extraction results
+| Metric              | Result     |
+| ------------------- | ---------- |
+| Training Accuracy   | **97.67%** |
+| Validation Accuracy | **84.25%** |
+| Test Accuracy       | **81.17%** |
 
-## 🔧 Configuration
+The reported performance corresponds to the video classification module evaluated on the project dataset.
 
-### Streamlit Dashboard Settings
-- **Fusion Strategy**: Choose between feature-level and late fusion
-- **Max Frames**: Limit frames processed (10-100)
+---
 
-### Audio Processing Parameters
-- **Sample Rate**: 22050 Hz (default)
-- **MFCC Coefficients**: 40 (default)
-- **FFT Window Size**: 2048 (default)
-- **Hop Length**: 512 (default)
+# ⚠️ Limitations
 
-## 📝 Key Implementation Details
+* Performance depends on the diversity and quality of the training dataset.
+* Face-based analysis requires detectable human faces in the input video.
+* Highly realistic AI-generated videos may remain challenging to classify.
+* The project is intended as an academic prototype and research implementation.
 
-### Feature Extraction Pipeline
-1. Extract frames from video (up to 30 frames)
-2. Detect faces using MTCNN
-3. Preprocess faces (resize to 224×224)
-4. Extract ResNet18 features (avgpool layer → 512 dims)
-5. Average features across all faces
+---
 
-### Audio Processing Pipeline
-1. Extract audio from video using moviepy
-2. Load audio with librosa (22050 Hz sample rate)
-3. Compute MFCC features (40 coefficients)
-4. Average MFCC over time axis
-5. Pass to AudioClassifier for feature extraction (32 dims)
+# 🔮 Future Scope
 
-### Fusion Strategy
-1. Get video features (512 dims) and audio features (32 dims)
-2. Concatenate: 512 + 32 = 544 dimensions
-3. Pass through MLP: 544 → 256 → 128 → 2
-4. Apply softmax to get probabilities
-5. Probability of class 0 (FAKE) is the confidence score
+* Transformer-based video architectures
+* Improved multimodal fusion techniques
+* Larger and more diverse datasets
+* Real-time inference
+* Performance optimization
+* Cloud deployment
 
-## ⚠️ Limitations and Future Work
+---
 
-### Current Limitations
-- Models initialized with random weights (requires training on real data)
-- Single face detection per frame
-- Fixed input resolution (224×224)
-- Limited to 30 frames per video
+# 📚 Academic Purpose
 
-### Future Enhancements
-- Multi-face detection and fusion
-- Attention mechanisms for important frames
-- Transformer-based audio analysis
-- Real-time streaming processing
-- Model quantization for mobile deployment
-- Fine-tuning with real deepfake datasets
+This repository has been developed for educational, research, and academic demonstration purposes to explore multimodal approaches for deepfake detection using computer vision and audio analysis.
 
-## 📄 License
+---
 
-[Add license information here]
+# 👨‍💻 Contributors
 
-## 👥 Authors
+Developed collaboratively by a three-member team.
 
-Member 3 - Multimodal Deepfake Detection System Implementation
+* **Member 1:** Video Processing & Deepfake Detection
+* **Member 2:** Audio Processing & Classification
+* **Member 3:** Fusion Module & User Interface
 
-## 🙏 Acknowledgments
+---
 
-- MTCNN for face detection
-- librosa for audio processing
-- PyTorch for deep learning framework
-- Streamlit for UI framework
+## ⭐ If you found this project interesting, consider giving the repository a star!
+
+---
+📄 License
+This repository is shared for academic demonstration and portfolio purposes. The source code is not intended for unrestricted reuse or commercial deployment without permission from the project contributors.
