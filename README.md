@@ -218,10 +218,11 @@ Developed collaboratively by a three-member team.
 * **Member 2:** Audio Processing & Classification
 * **Member 3:** Fusion Module & User Interface
 
----
+--
 
 ## ⭐ If you found this project interesting, consider giving the repository a star!
 
 ---
 📄 License
+
 This repository is shared for academic demonstration and portfolio purposes. The source code is not intended for unrestricted reuse or commercial deployment without permission from the project contributors.
