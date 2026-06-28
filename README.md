@@ -208,7 +208,7 @@ The reported performance corresponds to the video classification module evaluate
 
 This repository has been developed for educational, research, and academic demonstration purposes to explore multimodal approaches for deepfake detection using computer vision and audio analysis.
 
----
+--
 
 # 👨‍💻 Contributors
 
