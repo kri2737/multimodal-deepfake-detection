@@ -5,6 +5,16 @@ Premium dashboard for uploading videos, detecting deepfakes, and visualizing
 intermediate results including face detections and audio analysis.
 """
 
+import sys
+import os
+
+project_root = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..")
+)
+
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+    
 import streamlit as st
 import torch
 import cv2
