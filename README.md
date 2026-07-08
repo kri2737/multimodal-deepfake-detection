@@ -82,7 +82,7 @@ streamlit run ui/app.py
 
 Then open your browser to `http://localhost:8501` and upload a video to analyze.
 
-### Option 2: Python API
+## Option 2: Python API
 
 ```python
 from fusion_module.fusion_classifier import MultimodalPipeline
