@@ -68,7 +68,7 @@ pip install -r requirements.txt
 4. **Initialize models**
 ```bash
 python initialize_models.py
-```
+``
 
 This will create the audio and fusion model weights in the `models/` directory.
 
