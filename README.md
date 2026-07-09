@@ -101,7 +101,7 @@ print(f"Video Confidence: {results.get('video_confidence', 'N/A')}")
 print(f"Audio Confidence: {results.get('audio_confidence', 'N/A')}")
 ```
 
-## 📁 Project Structure
+# 📁 Project Structure
 
 ```
 multimodal-deepfake-detection/
