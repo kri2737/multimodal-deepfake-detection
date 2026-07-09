@@ -43,7 +43,7 @@ A comprehensive AI-powered system for detecting deepfakes using combined video a
 
 ## 📦 Installation
 
-### Prerequisites
+## Prerequisites
 - Python 3.8 or higher
 - CUDA 11.8+ (optional, for GPU acceleration)
 
