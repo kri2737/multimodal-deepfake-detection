@@ -78,7 +78,7 @@ This will create the audio and fusion model weights in the `models/` directory.
 
 ```bash
 streamlit run ui/app.py
-```
+``
 
 Then open your browser to `http://localhost:8501` and upload a video to analyze.
 
