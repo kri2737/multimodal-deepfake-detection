@@ -16,7 +16,7 @@ A comprehensive  AI-powered system for detecting deepfakes using combined video 
 - ResNet18-based video classification
 - Feature extraction for fusion
 
-### Audio Module
+## Audio Module
 - Audio extraction from video files
 - MFCC (Mel-Frequency Cepstral Coefficient) feature extraction
 - Audio classifier network
