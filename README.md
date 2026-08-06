@@ -1,6 +1,6 @@
 # Multimodal Deepfake Detection System
 
-A comprehensive  AI-powered system for detecting deepfakes using combined video and audio analysis. This system leverages  :
+A comprehensive  AI-powered system for detecting deepfakes using combined video and audio analysis. This system leverages :
 
 - **Video Analysis**: ResNet18-based face classification
 - ** Audio Analysis**: MFCC feature extraction and classification
