@@ -9,7 +9,7 @@ A comprehensive  AI-powered system for detecting deepfakes using combined video 
 
 # 🎯 Features
 
-# # Video Module
+## Video Module
 - Frame extraction from video files
 - Face detection using MTCNN
 - Face preprocessing and normalization
