@@ -7,7 +7,7 @@ A comprehensive  AI-powered system for  detecting deepfakes using combined video
 - **Multimodal Fusion**: Feature-level and late fusion strategies
 - **User Interface**: Premium Streamlit dashboard
 
-# 🎯 Features
+#🎯 Features
 
 ## Video Module
 - Frame extraction from video files
