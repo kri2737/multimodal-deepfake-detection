@@ -5,7 +5,7 @@ A comprehensive  AI-powered system for  detecting deepfakes using combined video
 -  **Video Analysis**: ResNet18-based face classification
 - ** Audio Analysis**: MFCC feature extraction and classification
 - **Multimodal Fusion**: Feature-level and late fusion strategies
-- **User Interface**: Premium Streamlit dashboard
+- ** User Interface**: Premium Streamlit dashboard
 
 #🎯 Features
 
