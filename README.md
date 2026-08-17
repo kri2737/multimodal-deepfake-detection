@@ -37,7 +37,7 @@ A comprehensive  AI-powered system for  detecting deepfakes using combined video
 - Premium dashboard with gradient styling
 - Face gallery display
 - Audio waveform visualization
-- MFCC spectrogram visualization
+- MFCC  spectrogram visualization
 - Confidence score display with detailed breakdown
 - Individual model confidence scores
 
