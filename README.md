@@ -22,7 +22,7 @@ A comprehensive  AI-powered system for  detecting deepfakes using combined video
 - Audio classifier network
 - Graceful handling of mute videos
 
-### Fusion Module
+##Fusion Module
 - Feature-level fusion: Concatenates video and audio embeddings
 - Late fusion: Combines predictions from individual models
 - Edge case handling:
