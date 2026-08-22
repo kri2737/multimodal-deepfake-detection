@@ -18,7 +18,7 @@ A comprehensive  AI-powered system for  detecting deepfakes using combined video
 
 ## Audio Module
 - Audio extraction from video files
-- MFCC (Mel-Frequency Cepstral Coefficient) feature extraction
+- MFCC(Mel-Frequency Cepstral Coefficient) feature extraction
 - Audio classifier network
 - Graceful handling of mute videos
 
